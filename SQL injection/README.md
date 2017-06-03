@@ -295,7 +295,7 @@ mysql> mysql> select version();
 
 
 
-## 感谢 - 其他来源
+## 感谢 - 其他资源
 * MySQL:
   - [PentestMonkey's mySQL injection cheat sheet] (http://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet)
   - [Reiners mySQL injection Filter Evasion Cheatsheet] (https://websec.wordpress.com/2010/12/04/sqli-filter-evasion-cheat-sheet-mysql/)
