@@ -1,8 +1,8 @@
-# Bug Hunting Methodology and Enumeration
+# 漏洞搜寻方式和枚举
 
-## Enumerate all subdomains (only if the scope is *.domain.ext)
+## 列举所有的子域 (只有当范围是 *.domain.ext)
 
-* Using Subbrute
+* 使用子域名爆破工具
 ```bash
 git clone https://github.com/TheRook/subbrute
 python subbrute.py domain.example.com
@@ -41,21 +41,21 @@ git clone https://github.com/ChrisTruncer/EyeWitness.git
 ./EyeWitness -f rdp.txt --rdp
 ```
 
-## Passive recon
-* Using Shodan (https://www.shodan.io/) to detect similar app
+## 被动侦察
+* 使用 Shodan (https://www.shodan.io/) 来探测相似的应用程序
 
-* Using The Wayback Machine (https://archive.org/web/) to detect forgotten endpoints,
+* 使用 The Wayback Machine (https://archive.org/web/) 来探测被遗忘的端点,
   ```
   look for JS files, old links
   ```
 
-* Using The Harvester (https://github.com/laramies/theHarvester)
+* 使用 The Harvester (https://github.com/laramies/theHarvester)
   ```
   python theHarvester.py -b all -d domain.com
   ```
 
 
-## Active recon
+## 主动侦察
 * Basic NMAP
   ```bash
   sudo nmap -sSV -p- 192.168.0.1 -oA OUTPUTFILE -T4
@@ -76,12 +76,12 @@ git clone https://github.com/ChrisTruncer/EyeWitness.git
   ```
 
 * NMAP and add-ons
-  1. Using searchsploit to detect vulnerable services
-  ```bash
+  1. 使用 searchsploit 来探测易受攻击的服务器
+  ```bash
   nmap -p- -sV -oX a.xml IP_ADDRESS; searchsploit --nmap a.xml
   ```
-  2. Generating nice scan report
-  ```bash
+  2. 合成精密的扫描报告
+  ```bash
   nmap -sV IP_ADDRESS -oX scan.xml && xsltproc scan.xml -o "`date +%m%d%y`_report.html"
   ```
 
@@ -157,9 +157,9 @@ git clone https://github.com/ChrisTruncer/EyeWitness.git
 
   ```  
 
-## List all the subdirectories and files
+## 列举出所有的子目录和文档
 
-* Using BFAC (Backup File Artifacts Checker): An automated tool that checks for backup artifacts that may disclose the web-application's source code.
+* 使用 BFAC (Backup File Artifacts Checker): 一个自动化的可以检测是否有能够揭露网页应用程序源代码备份工件的工具 .
 ```bash
 git clone https://github.com/mazen160/bfac
 
@@ -197,32 +197,32 @@ python sublist3r.py -e google,yahoo,virustotal -d example.com
 python sublist3r.py -b -d example.com
 ```
 
-* Using a script to detect all phpinfo.php files in a range of IPs (CIDR can be found with a whois)
+* 使用一个脚本在IPs (CIDR can be found with a whois)系列里探测 phpinfo.php 文档
 ```bash
 #!/bin/bash
 for ipa in 98.13{6..9}.{0..255}.{0..255}; do
 wget -t 1 -T 3 http://${ipa}/phpinfo.php; done &
 ```
 
-* Using a script to detect all .htpasswd files in a range of IPs
+* 使用一个脚本在一系列IPs里探测所有的 .htpasswd 文档
 ```bash
 #!/bin/bash
 for ipa in 98.13{6..9}.{0..255}.{0..255}; do
 wget -t 1 -T 3 http://${ipa}/.htpasswd; done &
 ```
 
-## Looking for Web vulnerabilities
+## 寻找网页的弱点
 
-* Look for private information in GitHub repos with GitRob
+* 用GitRob在GitHub repos寻找私人信息
 ```
 git clone https://github.com/michenriksen/gitrob.git
 gitrob analyze johndoe --site=https://github.acme.com --endpoint=https://github.acme.com/api/v3 --access-tokens=token1,token2
 ```
 
-* Explore the website with a proxy (ZAP/Burp Suite)
- 1. Start proxy, visit the main target site and perform a Forced Browse to discover files and directories
- 2. Map technologies used with Wappalyzer and Burp Suite (or ZAP) proxy
- 3. Explore and understand available functionality, noting areas that correspond to vulnerability types
+* 用一个代理 (ZAP/Burp Suite)来浏览网站
+ 1. 启动代理，访问目标站点并且强制打开浏览器来发现文档和目录
+ 2. 映射出使用 Wappalyzer and Burp Suite (or ZAP) 代理的技术
+ 3.探索和理解可用的功能，注解出符合漏洞类型的范围
 ```bash
 Burp Proxy configuration on port 8080 (in .bashrc):
 alias set_proxy_burp='gsettings set org.gnome.system.proxy.http host "http://localhost";gsettings set org.gnome.system.proxy.http port 8080;gsettings set org.gnome.system.proxy mode "manual"'
@@ -252,12 +252,12 @@ then launch Burp with : java -jar burpsuite_free_v*.jar &
 ...   
 ```
 
-* Subscribe to the site and pay for the additional functionality to test
+* 订阅该网站并且支付额外的功能来测试 
 
-* Launch a Nikto scan in case you missed something
+* 发起 Nikto 扫描以防你遗漏了一些东西
 ```
 nikto -h http://domain.example.com
 ```
 
-## Thanks to
+## 感谢
 * http://blog.it-securityguard.com/bugbounty-yahoo-phpinfo-php-disclosure-2/
