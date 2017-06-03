@@ -3,7 +3,7 @@ PHP对象注入是一种应用程序级别的漏洞，可以让攻击者执行�
 
 ## 开发
 
-反向壳
+反向shell
 ```php
 class PHPObjectInjection
 {
