@@ -7,7 +7,7 @@ https://www.example.com/signin/authorize?[...]&redirect_uri=https://demo.example
 https://www.example.com/signin/authorize?[...]&redirect_uri=https://localhost.evil.com
 ```
 
-重定向到接受的打开URL以获取访问令牌
+重定向到被接受的开放URL以获取访问令牌
 ```
 https://www.example.com/oauth20_authorize.srf?[...]&redirect_uri=https://accounts.google.com/BackToAuthSubTarget?next=https://evil.com
 https://www.example.com/oauth2/authorize?[...]&redirect_uri=https%3A%2F%2Fapps.facebook.com%2Fattacker%2F
@@ -15,7 +15,7 @@ https://www.example.com/oauth2/authorize?[...]&redirect_uri=https%3A%2F%2Fapps.f
 OAuth的实现绝不将整个领域列入优良者名单, 只有少数的网址，“redirect_uri”不能指出一个开放的重定向。
 
  
-有时你需要改变范围到一个无效的来疏通redirect_uri的滤波器:
+有时你需要改成一个无效的域来使redirect_uri过滤器通过:
 ```
 https://www.example.com/admin/oauth/authorize?[...]&scope=a&redirect_uri=https://evil.com
 ```
